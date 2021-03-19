@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membre
+{% endblock %}
+
+{% block body %}
+	<h1>Membre</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ membre.id }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ membre.email }}</td>
+			</tr>
+			<tr>
+				<th>Roles</th>
+				<td>{{ membre.roles ? membre.roles|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				{# <td>{{ membre.password }}</td> #}
+				<td>*****</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ membre.nom }}</td>
+			</tr>
+			<tr>
+				<th>Prenom</th>
+				<td>{{ membre.prenom }}</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>{{ membre.adresse }}</td>
+			</tr>
+			<tr>
+				<th>Cp</th>
+				<td>{{ membre.cp }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ membre.ville }}</td>
+			</tr>
+			<tr>
+				<th>Tel</th>
+				<td>{{ membre.tel }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<a href="{{ path('membre_index') }}">back to list</a>
+
+	<a href="{{ path('membre_edit', {'id': membre.id}) }}">edit</a>
+
+	{{ include('membre/_delete_form.html.twig') }}
+
+	<h2>
+		liste de ses commandes</h2>
+<table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+				<th>Date</th>
+                <th>Montant</th>
+                <th>Etat</th>
+            </tr>
+        </thead>
+ <tbody>
+
+		{% for commande in membre.commandes %}
+			<tr>
+				<td>{{ commande.id }}</td>
+				<td>{{ commande.dateEnregistrement|date("d/m/Y") }}</td>
+                <td>{{ commande.montant }} €</td>
+                <td>{{ commande.etat }}</td>
+                <td>{{ commande.membre.nom }}</td>
+                <td>{{ commande.membre.prenom }}</td>
+			</tr>
+			{% else %}
+			<td colspan=4>Aucune commande encours pour ce membre</td> 
+		{% endfor %}
+		<br><br>
+</tbody>
+
+
+{% endblock %}

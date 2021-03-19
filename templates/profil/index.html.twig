@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+
+{% block body %}
+	<h1>Mon Profil</h1>
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<strong>Email:
+			</strong>
+			{{app.user.username}}
+		</li>
+		<li class="list-group-item">
+			<strong>Nom:
+			</strong>
+			{{app.user.nom}}
+		</li>
+		<li class="list-group-item">
+			<strong>Prenom:
+			</strong>
+			{{app.user.prenom}}
+		</li>
+		<li class="list-group-item">
+			<strong>Role:
+			</strong>
+			{% set texte = "" %}
+			{% for role in app.user.roles %}
+				{% if role == "ROLE_ADMIN" %}
+					{%  set roletxt ="Administrateur" %}
+				{% elseif role == "ROLE_BIBLIOTHECAIRE" %}
+					{%  set roletxt ="Bibliothecaire" %}
+				{% elseif role== "ROLE_ABONNE" %}
+					{%  set roletxt ="Lecteur" %}
+
+				{% else %}
+					{%  set roletxt ="" %}
+				{% endif %}
+
+				{%  set texte = texte ~ (texte ? ", " : "") ~ roletxt %}
+			{% endfor %}
+
+			{{ texte }}
+		</li>
+{% endblock %}

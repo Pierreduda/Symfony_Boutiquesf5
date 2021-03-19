@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="card-columns">
+	{% for produit in liste_produits %}
+		{% include 'produit/vignette.html.twig' with  {'p': produit} %}
+
+	{% endfor %}
+</div>
+{% endblock %}

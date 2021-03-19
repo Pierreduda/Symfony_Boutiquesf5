@@ -1,0 +1,28 @@
+<div
+	class="card" style="width: 18rem;">
+	{# <img src="{{url_images_livres ~ livre.couverture}}" alt="Pas de couverture" class="card-img-top" > #}
+	<div class="card-body">
+		<h5 class="card-title">Nom:
+			{{p.titre}}</h5>
+		<p class="card-text">Prix:
+			{{p.prix}}</p>
+		<p class="card-text">Stock:
+			{{p.stock}}</p>
+		{# <a href="{{path('panier_ajouter', {id: p.id})}}" class="btn btn-primary">Panier</a> #}
+	</div>
+
+	<form method="GET" action="{{ path("panier_ajouter", { id: produit.id }) }}" class="mt-2 form-inline" id="">
+		<div class="row m-0">
+			<a href="" class="btn btn-primary col-12 col-md-3">Voir
+			</a>
+			<div class="col-12 col-md-2"></div>
+
+			<div class="col-12 col-md-7 d-flex flex-row justify-content-between px-0">
+				<input type="number" name="qte" value="1" min="1" max={{ produit.stock }} class="form-control col-7">
+				<button class="btn btn-info col-4">
+					<i class="fa fa-cart-plus"></i>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
